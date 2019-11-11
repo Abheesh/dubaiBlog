@@ -15,7 +15,7 @@ dubaiNews.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'templates/posts.html',
             controller: 'postsCtrl'
         })
-        .otherwise({ redirectTo: '/' });
+        .otherwise({ redirectTo: '/posts' });
 }]);
 
 dubaiNews.controller('postsCtrl', function ($scope, $location, mainService) {
