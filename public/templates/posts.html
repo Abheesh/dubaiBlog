@@ -1,0 +1,94 @@
+<div>
+    <ul class="nav-bar">
+        <li class="active"><a ng-click="changeTab(1);">Home</a></li>
+        <li><a ng-click="changeTab(2);">Add Post</a></li>
+        <li><a ng-click="changeTab(3);">Edit Post</a></li>
+        <li><a ng-click="logout()">Log out</a></li>
+    </ul>
+</div>
+
+
+
+
+<div class="container">
+    <!-- View all posts -->
+    <div ng-if="tab == 1">
+        <div class="search-bar">
+            <h4>All Posts</h4>
+            <hr />
+            <input type="text" placeholder="Search..." ng-model="search" />
+        </div>
+
+        <div ng-repeat="post in allPosts | filter:search" class="posts-card">
+
+            <div>
+                <span class="title"> {{ post.blogName}}</span>
+                <p class="desc">
+                    {{post.blogDescription}}
+                </p>
+                <div class="signature">
+                    <span>- {{post.author}} </span><span>{{post.date}}</span>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <!-- Add new -->
+    <div ng-if="tab == 2">
+
+        <div class="posts-card">
+            <h4>Add New Post</h4>
+            <hr />
+            <input type="text" placeholder="Blog name" ng-model="blogData.blogName" /><br>
+            <textarea ng-model="blogData.blogDesc" placeholder="Blog description"></textarea> <br />
+            <input type="button" class="btn btn-primary" value="Save" ng-click="addNewPost();"
+                ng-disabled="!blogData.blogName.length" />
+            <input type="button" class="btn btn-default" value="Cancel" ng-click="changeTab(1);" />
+
+
+        </div>
+    </div>
+    <!-- update post -->
+    <div ng-if="tab == 3">
+        <div ng-if="!showUpdate">
+
+            <div class="search-bar">
+                <h4>Edit Your Posts</h4>
+                <hr />
+                <input type="text" placeholder="Search..." ng-model="search" />
+            </div>
+            <div ng-repeat="post in allPosts | filter:search " class="posts-card" ng-if="checkPostOwer(post.uid)">
+
+                <div> <a ng-click="updateBlock(post)">Update</a>  |  <a
+                        ng-click="deleteBlock(post._id)">Delete</a>
+                        <br><br>
+                </div>
+                <div>
+                    <span class="title"> {{ post.blogName}}</span>
+                    <p class="desc">
+                        {{post.blogDescription}}
+                    </p>
+                    <div class="signature">
+                        <span>- {{post.author}} </span><span>{{post.date}}</span>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div ng-if="showUpdate">
+            <h4>Edit Your Posts</h4>
+            <hr />
+            <input type="text" placeholder="Blog name" ng-model="updateData.blogName" /><br>
+            <textarea ng-model="updateData.blogDescription" placeholder="Blog description"></textarea> <br />
+            <input type="button" class="btn btn-primary" value="Save" ng-click="updatePost(updateData)"
+                ng-disabled="!updateData.blogName.length" />
+            <input type="button" class="btn btn-default" value="Cancel" ng-click="remveUpdate()" />
+
+
+        </div>
+    </div>
+</div>

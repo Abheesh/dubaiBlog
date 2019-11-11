@@ -1,0 +1,27 @@
+<div class="login">
+        <form>
+                <div class="imgcontainer">
+                  <img src="img_avatar2.png" alt="Avatar" class="avatar">
+                </div>
+              
+                <div>
+                  <label for="uname"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="uname" ng-model="user.uname" required>
+              
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" ng-model="user.password" required>
+                      
+                  <button type="submit" ng-click="login()">Login</button>
+                  {{uname}}
+                  <span>New user? <a href="#!/register">signup here</a></span>
+                </div>
+                
+              
+                <!-- <div class="container" style="background-color:#f1f1f1">
+                  
+                  
+                 
+                </div> -->
+              </form>
+</div>
+
